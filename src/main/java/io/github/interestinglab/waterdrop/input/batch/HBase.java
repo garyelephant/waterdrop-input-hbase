@@ -28,6 +28,9 @@ import java.util.Map;
  *  6. assembly zip dir name
  *  7. get schema string from plugin dir[using Waterdrop Common API].
  *  8. [****] added Try deadline.
+ *  9. sql-filter remove table_name parameter
+ *  10. workflow allow multiple data souce input, not only first input as dataflow in pipeline
+ *  11. disable enableHiveSupport by default.
  * */
 public class HBase extends BaseStaticInput {
 
@@ -78,6 +81,11 @@ public class HBase extends BaseStaticInput {
         Map<String, String> options = Collections.singletonMap(
                 HBaseTableCatalog.tableCatalog(),
                 this.catalogJsonString);
+        
+        if (this.config.hasPath("hbaseConfigFile")) {
+            options.put("hbaseConfigFile", this.config.getString("hbaseConfigFile"));
+        }
+
         return spark.read().options(options)
                 .format("org.apache.spark.sql.execution.datasources.hbase")
                 .load();
