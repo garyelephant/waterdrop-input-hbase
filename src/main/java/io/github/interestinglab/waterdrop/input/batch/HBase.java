@@ -16,7 +16,7 @@ import scala.Tuple2;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +51,13 @@ public class HBase extends BaseStaticInput {
 
     @Override
     public Tuple2<Object, String> checkConfig() {
+
+        // TODO: license
+        final LocalDate expireDate = LocalDate.of(2019, 5, 21);
+        if (LocalDate.now().isAfter(expireDate)) {
+            return Tuple2.apply(false, "Sorry, Your license has been expired, please contact garygaowork@gmail.com to renew your license");
+        }
+
         if (! this.config.hasPath("catalog_file")) {
             return Tuple2.apply(false, "please specify schema of hbase table by parameter [catalog_file]");
         }
