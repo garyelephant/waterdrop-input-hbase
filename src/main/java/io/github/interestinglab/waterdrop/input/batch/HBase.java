@@ -23,6 +23,10 @@ import java.util.Map;
  *  1. Config should be replaced by waterdrop typesafe config.
  *  2. Tuple2<Object, String> checkConfig() ==> Boolean
  *  3. waterdrop-apis in mvn repo, exclude spark jar.
+ *  4. plugin version info
+ *  5. waterdrop runner for plugin.
+ *  6. assembly zip dir name
+ *  7. get schema string from plugin dir[using Waterdrop Common API].
  * */
 public class HBase extends BaseStaticInput {
 
