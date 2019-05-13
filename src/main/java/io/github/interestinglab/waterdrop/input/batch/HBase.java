@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.typesafe.config.Config;
 import io.github.interestinglab.waterdrop.apis.BaseStaticInput;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.spark.sql.Dataset;
@@ -16,6 +17,7 @@ import scala.Tuple2;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -78,10 +80,9 @@ public class HBase extends BaseStaticInput {
     @Override
     public Dataset<Row> getDataset(SparkSession spark) {
 
-        Map<String, String> options = Collections.singletonMap(
-                HBaseTableCatalog.tableCatalog(),
-                this.catalogJsonString);
-        
+        Map<String, String> options = new HashMap<>();
+        options.put(HBaseTableCatalog.tableCatalog(), this.catalogJsonString);
+
         if (this.config.hasPath("hbaseConfigFile")) {
             options.put("hbaseConfigFile", this.config.getString("hbaseConfigFile"));
         }
