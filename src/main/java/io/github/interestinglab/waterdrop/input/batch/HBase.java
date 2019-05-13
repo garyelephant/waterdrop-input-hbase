@@ -27,6 +27,7 @@ import java.util.Map;
  *  5. waterdrop runner for plugin.
  *  6. assembly zip dir name
  *  7. get schema string from plugin dir[using Waterdrop Common API].
+ *  8. [****] added Try deadline.
  * */
 public class HBase extends BaseStaticInput {
 
