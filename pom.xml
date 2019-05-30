@@ -23,7 +23,7 @@
         <waterdrop.version>1.3.0</waterdrop.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <hbase.version>1.2.0</hbase.version>
+        <hbase.version>1.2.6</hbase.version>
     </properties>
     <dependencies>
         <dependency>
